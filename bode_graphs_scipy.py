@@ -10,6 +10,9 @@ from scipy import signal
 
 import matplotlib.pyplot as plt
 
+
+
+
 num = [1,0]
 den = [1,2,3]
 
