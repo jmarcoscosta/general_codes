@@ -11,7 +11,7 @@ f_sampling = 1/(t[1]-t[0])
 em = Em*np.cos(2*np.pi*fm*t)
 e0 = E0*np.cos(2*np.pi*f0*t)
 
-b1,b2 = 0.054,0.004
+b1,b2 = 0.3,0.04
 
 v1 = 0.5*(em+e0)
 v2 = b1*v1 + b2*v1**2
@@ -62,7 +62,7 @@ plt.title("V2(f): saída da chave síncrona")
 plt.ylabel("Amplitude (V)")
 plt.xlabel("frequência (kHz)")
 plt.plot(freq*lfft/2,np.abs(v2_S))
-#plt.xlim([-110,110])
+plt.xlim([-110,110])
 
 plt.tight_layout()
 plt.show()

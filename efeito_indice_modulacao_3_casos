@@ -1,0 +1,12 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+E0 = 8
+f0 = 100*1e3
+Em = 8
+fm = 5*1e3
+t = np.linspace(0,20,10000)
+f_sampling = 1/(t[1]-t[0])
+
+em = Em*np.cos(2*np.pi*fm*t)
+e0 = E0*np.cos(2*np.pi*f0*t)
