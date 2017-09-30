@@ -1,12 +1,14 @@
-from setuptools import setup
+from distutils.core import setup
 
 setup(
-     name='python-fourier-series-calculator',    # This is the name of your PyPI-package.
-     version='0.1.4',                          # Update the version number for new releases
-     scripts=['fseries.py'],                  # The name of your scipt, and also the command you'll be using for calling it
+     name='fseries',    # This is the name of your PyPI-package.
+     scripts=['fseries'],                  # The name of your scipt, and also the command you'll be using for calling it
+     version='0.1.5',                          # Update the version number for new releases
      author= 'Joao Marcos Costa',
      author_email='jmcosta944@gmail.com',
      keywords='fourier series calculus science engineering math',
-     install_requires=['numpy','scipy']
-
+     install_requires=['numpy','scipy'],
+     url = 'https://github.com/jmarcoscosta/general_codes/tree/master/fseries',
+     download_url= 'https://github.com/jmarcoscosta/general_codes/blob/master/fseries/dist/python-fourier-series-calculator-0.1.4.tar.gz',
+     classifiers = [],
 )
