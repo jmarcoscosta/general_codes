@@ -9,6 +9,6 @@ setup(
      keywords='fourier series calculus science engineering math',
      install_requires=['numpy','scipy'],
      url = 'https://github.com/jmarcoscosta/general_codes/tree/master/fseries',
-     download_url= 'https://github.com/jmarcoscosta/general_codes/blob/master/fseries/dist/python-fourier-series-calculator-0.1.4.tar.gz',
+     download_url= 'https://github.com/jmarcoscosta/general_codes/tree/master/fseries/archive/fseries-0.1.5.tar.gz',
      classifiers = [],
 )
