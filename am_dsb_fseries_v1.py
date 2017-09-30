@@ -18,31 +18,28 @@ def v1(t):
 def _cos(x,n_,w_):
 	return v1(x)*np.cos(x*n_*w_)
 	
-def an(T,n=10):
-	an=np.zeros(n)
-	W = 2*np.pi/T
 
-	for i in range(n):
-		an[i]=(2/T)*(integrate.quad(_cos,0,T,args=(i,W))[0])
-	return an
 
-a_n = an(T0,21)		
 	
 def _sin(x,n_,w_):
 	return v1(x)*np.sin(x*n_*w_)
 	
-def bn(T,n=10):
+def an_bn(T0,n=10):
 	bn=np.zeros(n)
-	W = 2*np.pi/T
+	W = 2*np.pi/T0
+	an=np.zeros(n)
 
 	for i in range(n):
-		bn[i]=(2/T)*(integrate.quad(_sin,0,T,args=(i,W))[0])
-	return bn	
+		an[i]=(2/T0)*(integrate.quad(_cos,0,T0,args=(i,W))[0])
+		bn[i]=(2/T0)*(integrate.quad(_sin,0,T0,args=(i,W))[0])
+
+	return an,bn
+
 	
-b_n = bn(T0,21)
+a_n,b_n = an_bn(T0,21)
 
 
-def rebuilt(an_coefs,bn_coefs,T,x):
+def rebuild(an_coefs,bn_coefs,T,x):
 	w0 = 2*np.pi/T
 	N = len(an_coefs)
 	f_sum = 0
@@ -53,7 +50,7 @@ def rebuilt(an_coefs,bn_coefs,T,x):
 	
 	
 	
-v1_rec = rebuilt(a_n,b_n,T0,x)
+v1_rec = rebuild(a_n,b_n,T0,x)
 
 plt.subplot(211)
 plt.title("V1(t): Sinal original")
