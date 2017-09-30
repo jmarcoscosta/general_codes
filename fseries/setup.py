@@ -1,8 +1,8 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(
      name='fseries',    # This is the name of your PyPI-package.
-     scripts=['fseries'],                  # The name of your scipt, and also the command you'll be using for calling it
+     scripts=['fseries.py'],                  # The name of your scipt, and also the command you'll be using for calling it
      version='0.1.5',                          # Update the version number for new releases
      author= 'Joao Marcos Costa',
      author_email='jmcosta944@gmail.com',
