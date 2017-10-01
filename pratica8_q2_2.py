@@ -36,7 +36,7 @@ K = 9.4e-3
 R,C,L = 47,130e-9,20e-6
 
 
-modulado = K*e0*em + em*(194e-3/10)
+modulado = -K*e0*em + em*(-194e-3/10)
 
 
 

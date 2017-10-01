@@ -1,5 +1,6 @@
 fseries.py
 setup.py
+bin/fseries.py
 fseries.egg-info/PKG-INFO
 fseries.egg-info/SOURCES.txt
 fseries.egg-info/dependency_links.txt
