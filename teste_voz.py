@@ -12,7 +12,7 @@ import scipy.io.wavfile as wv
 fs, audio = wv.read('voz.wav')
 
 a = np.array([1,2,3,4,5])
-
+a = np.reshape(a,[5,1])
 b = np.reshape(a,[1,5])
 
 plt.figure(1)

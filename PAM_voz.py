@@ -36,9 +36,36 @@ audio_BW_limitada = butter_lowpass_filter(audio[:,0],3400,fs)
 #wv.write('voz_bw_limitada.wav',fs,audio_gravado)
 #plt.plot(freq,np.abs(audio_BW_limitada_S))
 
-new_fs = 9000 #Hz, >2*3.4KHz
-new_t = np.arange(0,t[-1],1/new_fs)
+def downsample(array,rate):
+    return array[::rate]
 
-new_audio = audio_BW_limitada[::95021//19392]
+def upsample(array,rate):
+    from numpy import zeros
+    ret =  zeros(rate*len(array))
+    ret[::rate] = array 
+    return ret
+
+N = 5
+new_fs = fs/N  #Hz, >2*3.4KHz
+
+pulsos = np.zeros(len(audio_BW_limitada))
+pulsos[::N] = 1 
 
 
+audio_PAM = audio_BW_limitada*pulsos
+#plt.plot(audio_BW_limitada)
+#plt.plot(audio_PAM,'r')
+audio_gravado = np.asarray(audio_PAM,dtype='int16')
+wv.write('voz_PAM.wav',fs,audio_gravado)
+
+
+S_audio_PAM = np.fft.fftshift(np.fft.fft(audio_PAM))
+
+fpb = np.zeros(len(S_audio_PAM))
+fpb[0:10000]= 1 
+S_audio_PAM *= fpb
+recuperado = np.fft.ifft(S_audio_PAM)
+recuperado *= len(S_audio_PAM)
+recuperado = np.asarray((recuperado),dtype = 'int16')
+plt.plot(audio_gravado)
+plt.plot(recuperado)

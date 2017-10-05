@@ -11,13 +11,13 @@ import matplotlib.pyplot as plt
 from math import gcd
 import heapq
 
-f1 = 10
-f2 = 30
-f3 = 40
+f1 = 30
+f2 = 6
+f3 = 300
 
 print(gcd(gcd(f1,f2),f3))
 
-fs= 100*f3
+fs= 10*f3
 
 t = np.arange(0,10+1/fs,1/fs)
 
