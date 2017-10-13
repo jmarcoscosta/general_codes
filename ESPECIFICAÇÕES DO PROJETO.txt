@@ -1,0 +1,11 @@
+ESPECIFICAÇÕES DO PROJETO:
+- G (ganho) = 2.7, aproximadamente
+- Q (fator de qualidade) = 3.33
+- Amp-Op = LM358 ou LM356
+- R = 1.6 K
+- Ra = 1.7K (na prática, série de 1.6K+100) 
+- Rb = 1K 
+- C = 1nF
+- Banda = 30KHz
+- Frequência central = 100KHz
+- GBW do Amp-Op = por margem de segurança, 1MHz (10*f0)
