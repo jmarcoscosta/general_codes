@@ -13,25 +13,28 @@ import matplotlib.pyplot as plt
 
 
 
-num = [1,0]
-den = [1,2,3]
+num = [1]
+den = [1,1]
 
 H_s = signal.lti(num,den)
 
 w, H_module, H_phase = signal.bode(H_s)
 
 plt.figure()
+
+plt.subplot(211)
+plt.title("Resposta em frequência - Módulo ")
 plt.semilogx(w,H_module) 
-plt.ylabel("|H| (dB)")
-plt.xlabel("frequency (rads)")
-plt.title("Bode Diagram")
+plt.ylabel("$|H(\omega)|$ (dB)")
+plt.xlabel("Frequência [rads]")
+plt.grid()
 
-
-plt.figure()
-plt.title("Bode Diagram")
-plt.xlabel("frequency (rads)")
-plt.ylabel("$\phi$ (degrees)")
+plt.subplot(212)
+plt.title("Resposta em frequência - Fase ")
+plt.grid()
+plt.xlabel("Frequência [rads]")
+plt.ylabel("$\phi$ [graus]")
 plt.semilogx(w,H_phase)
 
-
+plt.tight_layout()
 plt.show()

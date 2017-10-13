@@ -16,7 +16,7 @@ t = np.arange(0,95021)/fs
 #audio_S = np.fft.fftshift(np.fft.fft(audio[:,0]))/95021
 #freq = np.arange(-fs/2,fs/2,fs/95021)
 #plt.plot(freq,np.abs(audio_S))
-from scipy.signal import butter, lfilter, freqz
+from scipy.signal import butter, lfilter, freqz,firwin
 
 
 def butter_lowpass(cutoff, fs, order=5):
@@ -59,13 +59,23 @@ audio_gravado = np.asarray(audio_PAM,dtype='int16')
 wv.write('voz_PAM.wav',fs,audio_gravado)
 
 
-S_audio_PAM = np.fft.fftshift(np.fft.fft(audio_PAM))
+#S_audio_PAM = np.fft.fft(audio_PAM)[0:len(audio_PAM)//2] 
 
-fpb = np.zeros(len(S_audio_PAM))
-fpb[0:10000]= 1 
-S_audio_PAM *= fpb
-recuperado = np.fft.ifft(S_audio_PAM)
-recuperado *= len(S_audio_PAM)
-recuperado = np.asarray((recuperado),dtype = 'int16')
-plt.plot(audio_gravado)
-plt.plot(recuperado)
+fpb_B,fpb_A = butter_lowpass(3400,fs,order=5)
+eixo_freq = np.linspace(0,fs/2,len(audio_PAM)/2)
+
+def filter_response(a,b,freq):
+    filter_num,filter_den = 0,0
+    for i in range(0,len(a)):
+        #filter_num += a[i]*freq**i
+        filter_den += b[i]*freq**i
+    return 1/filter_den
+fpb = filter_response(fpb_A,fpb_B,eixo_freq)
+        
+
+            
+#recuperado = np.fft.ifft(S_audio_PAM)
+#recuperado *= len(S_audio_PAM)
+#recuperado = np.asarray((recuperado),dtype = 'int16')
+#plt.plot(audio_gravado)
+#plt.plot(recuperado)
