@@ -45,3 +45,6 @@ plt.show()
 
 plt.figure()
 plt.plot(w/(2*np.pi),10**(H_module/20))
+
+import sys
+print(sys.version)
