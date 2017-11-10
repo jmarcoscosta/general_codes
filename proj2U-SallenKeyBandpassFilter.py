@@ -14,37 +14,41 @@ import matplotlib.pyplot as plt
 f0 = 100e3
 BW = 30e3
 Q = f0/BW
-G = (3*Q-1)/Q
+G = 2.7
 w0 = 2*np.pi*f0
-
-num = [G,0]
-den = [1,w0*(3-G)/Q,w0**2]
+R = 8e3
+C = 200e-12
+A0 = G/(3-G)
+print(20*np.log10(A0))
+RC = R*C
+num = [G/RC,0]
+den = [1,1/(RC*Q),(1/RC)**2]
 
 H_s = signal.lti(num,den)
 
-w, H_module, H_phase = signal.bode(H_s)
+w, H_module, H_phase = signal.bode(H_s,n=1000)
 
-plt.figure()
 
-plt.subplot(211)
+#plt.subplot(211)
 plt.title("Resposta em frequência - Módulo ")
 plt.semilogx(w/(2*np.pi),H_module) 
+#plt.ylim([2.9,3.1])
+#plt.xlim([80e3,120e3])
 plt.ylabel("$|H(\omega)|$ (dB)")
 plt.xlabel("Frequência [Hz]")
 plt.grid()
 
-plt.subplot(212)
-plt.title("Resposta em frequência - Fase ")
-plt.grid()
-plt.xlabel("Frequência [Hz]")
-plt.ylabel("$\phi$ [graus]")
-plt.semilogx(w/(2*np.pi),H_phase)
+#plt.subplot(212)
+#plt.title("Resposta em frequência - Fase ")
+#plt.grid()
+#plt.xlabel("Frequência [Hz]")
+#plt.ylabel("$\phi$ [graus]")
+#plt.semilogx(w/(2*np.pi),H_phase)
 
-plt.tight_layout()
+#plt.tight_layout()
 plt.show()
 
-plt.figure()
-plt.plot(w/(2*np.pi),10**(H_module/20))
+
 
 import sys
 print(sys.version)
